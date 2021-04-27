@@ -44,7 +44,6 @@ class Graph{
 
         bool cycle(); //indicates whether or not the graph contains a cycle
 
-        void copy(const Graph<Element>& graph); // copy one graph to another 
 
         void print(int root); //us Prims algorithm to construct a minimum 
         // spanning tree of an undrected weighted grpah, starting from the vertex 
@@ -53,6 +52,7 @@ class Graph{
 
 
     private:
+        void copy(const Graph<Element>& graph); // copy one graph to another 
         void readFile(string filename);//read a file representing a graph
         void destroy();
 
