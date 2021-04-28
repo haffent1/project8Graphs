@@ -57,7 +57,10 @@ class Graph{
         void destroy();
 
         int size;
-        Graph<Element> *Alist; //adjacency list
+        Graph<Element> *Alist; //adjacency list of the value nodes and their neighbors
+        Dict<Edge> *GraphWeights; //a dict that when given two vertices gives back the weight of the edge
+        //we need to modify the dict file so that it has a get method that takes in two vertieces and returns the 
+        //value held by an edge object.
 
 
         
