@@ -23,14 +23,18 @@ Dict<Element>::Dict(const Dict<Element>& d) : HashTable<Element>(d)
 
 
 template <class Element>
-Element* Dict<Element>::get(const Element& k) const
+Element* Dict<Element>::get(int head, int tail) const
 {
-  int x = k.hash(slots);
+    int sumOfKeys = head + tail;
+    Element temp = new Element(sumOfKeys);
+
+  int x = temp.hash(size);
   return(table[x].get(&k)); 
 }
 
+
 template <class Element>
-void Dict<Element>::insert(Element *k)
+void Dict<Element>::insert(int head, int tail, Element *k)
 {
   int x = k->hash(slots);
   if (!table[x].contains(*k))
