@@ -1,57 +1,106 @@
 //vertex.cpp
 #include <sstream>
 
+//===================
+//
+//    Constructors
+//
+//===================
+
+//
+//Default Constructor
+//
 Vertex :: Vertex(){
-    value = NULL;
-    distFromRoot = NULL;
+    value = 0;
+    distFromRoot = 0;
     predecessor = NULL;
-    key = NULL;    
-    color = NULL;    
-    discovery = NULL;
-    finish = NULL;
-}//end of default constructor
+    key = 0;    
+    color = -1;    
+    discovery = 0;
+    finish = 0;
+}
 
-Vertex :: Vertex(int value){
+//
+//Default Constructor with value
+//
+Vertex :: Vertex(int value)
+{
     value = value;
-    distFromRoot = NUll;
+    distFromRoot = 0;
     predecessor = NULL;
-    key = NUll;    
-    color = NULL;    
-    discovery = NULL;
-    finish = NULL;
-}//end of default constructor
+    key = 0;    
+    color = -1;    
+    discovery = 0;
+    finish = 0;
+}
 
-Vertex :: Vertex(const Vertex& vertex){
-    this->copy(vertex);
-}//end of copy constructor
+//
+//Copy Constructor
+//
+Vertex::Vertex(const Vertex& v )
+{
+  this->copy(v);
+}
 
-Vertex :: Vertex& operator = (const Vertex& vertex){
-    if (this != &vertex)
+//
+//Deconstructor
+//
+Vertex::~Vertex()
+{
+  this->destroy();
+}
+
+//
+//Assignment Operator
+//
+Vertex& Vertex::operator=(const Vertex& v)
+{
+    if (this != &v)
     {
         this->destroy();
-        this->copy(vertex);
+        this->copy(v);
         return *this;
     }
     else
         throw CopyError{};
 
-}//end of copy constructor
+}
 
-Vertex :: string toString() const{
+//===================
+//
+//    Print Functions
+//
+//===================
+
+//
+//toString
+//
+string Vertex::toString() const
+{
     stringstream s;
     s << value;
-    return s;
-}//end of to string 
+    return s.str();
+}
+//
+//<< operator
+//
+std::ostream& operator<<(std::ostream& stream, const Vertex& vertex)
+{
+    stream<<vertex.toString();
+    return stream;
+}
+//===================
+//
+//    Private Functions
+//
+//===================
 
-
-
-Vertex :: ~Vertex(){
-    this->destroy();
-}//end of destuctor
-
-
-Vertex :: void copy(const Vertex& vertex){
-    value = vertex.length;
+//
+//copy
+//
+void Vertex::copy(const Vertex& vertex)
+{
+    value = vertex.value;
     distFromRoot = vertex.distFromRoot;
     predecessor = vertex.predecessor;
     key = vertex.key;
@@ -59,20 +108,19 @@ Vertex :: void copy(const Vertex& vertex){
     discovery = vertex.discovery;
     finish = vertex.finish;
 
-}// end of copy
-
-Vertex :: void Destroy(){
-    value = NULL;
-    distFromRoot = NUll;
+}
+//
+//destroy
+//
+void Vertex::destroy()
+{
+    value = 0;
+    distFromRoot = 0;
     predecessor = NULL;
-    key = NULL;    
-    color = NULL;    
-    discovery = NULL:
-    finish = NULL:
-} //end of Destroy 
+    key = 0;    
+    color = -1;    
+    discovery = 0;
+    finish = 0;
+}
 
-
-std::ostream& operator<<(std::ostream& stream, const Vertex& vertex){
-    stream<<vertex.toString();
-    return stream;
-}//end of << overload
+//end of << overload
