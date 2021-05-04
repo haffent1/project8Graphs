@@ -3,12 +3,17 @@
 #define GRAPH_H
 
 #include <iostream>
-#include "/supportFiles/List.h"
-#include "/supportFiles/List.h"
+#include "./supportFiles/List.h"
+#include "./supportFiles/dict.h"
+#include "vertex.h"
 
 using namespace std;
 
-template <class Element>
+//class Graph;
+
+//template <class Vertex>                                                        
+//std::ostream& operator<<(std::ostream& stream, const Graph<Vertex>& graph);
+
 class Graph{
     public:
         Graph(string fileName); //the constructor will take in a file
@@ -21,11 +26,11 @@ class Graph{
         0 1 0 0 1
         0 0 3 1 0
          */
-        Graph(const Graph<Element>& graph); //copy-constructor
+        Graph(const Graph& graph); //copy-constructor
         ~Graph(); //destuctor
-        Graph<Element>& operator = (const Graph<Element>& graph);
+        Graph& operator = (const Graph& graph);
 
-        Element* get(int vetexName); 
+        Vertex* get(int vetexName); 
         //we might need a get weight method
 
         void dfs(); //depth first search print vertices in order
@@ -37,28 +42,20 @@ class Graph{
         // you will need to use your previously written minimum priority que class
 
 
-    private:
-        void copy(const Graph<Element>& graph); // copy one graph to another 
+    public:
+        void copy(const Graph& graph); // copy one graph to another 
         void readFile(string filename);//read a file representing a graph
         void destroy();
 
         int size;
-        Element *vertiecesArray; //an array of pointers to each vertex
-        List<Element> *Alist; //adjacency list of the value nodes and their neighbors using a Linked list
-        Dict<Edge> *GraphWeights; //a dict that holds pointers to a class that holds the 
-        friend ostream& operator<<(std::ostream& stream, const Graph<Element>& graph);
+        Vertex **vertiecesArray; //an array of pointers to each vertex
+        List<Vertex> *Alist; //adjacency list of the value nodes and their neighbors using a Linked list
+        Dict<Vertex> *GraphWeights; //a dict that holds pointers to a class that holds the 
+        //friend ostream& operator<<(std::ostream& stream, const Graph<Vertex>& graph);
 
-}//end of Graph class
+};//end of Graph class
 
-template <class Element>                                                        
-std::ostream& operator<<(std::ostream& stream, const Graph<Element>& graph);
-
-
-class KeyError{};
-class SizeError{};
-class CopyError{};
-
-#include "Graph.cpp"
+#include "graph.cpp"
 #endif
 
 

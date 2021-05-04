@@ -4,26 +4,23 @@
 
 //================================================================
 //    Constructors
-//================================================================
-template <class Element>      
-Graph<Element> :: Graph(string filename){
+//================================================================   
+Graph :: Graph(string filename){
     readFile(filename); //I just wanted to make the constuctor pretty
 }// end of default constructor 
-
-template <class Element>      
-Graph<Element> :: Graph(const Graph<Element>& graph){
-    this->copy();
+     
+Graph :: Graph(const Graph& graph){
+    this->copy(graph);
 }//end of copy constructor
-
-template <class Element>      
-Graph<Element> :: ~Graph(){
+  
+Graph :: ~Graph(){
 }//destructor
 
 //================================================================
 //    Operators                                                   
 //================================================================
-template<class Element>
-Graph<Element>& Graph<Element> :: operator=(const Graph<Element>& graph){
+
+Graph& Graph :: operator=(const Graph& graph){
     if (this != &graph)      
     {                    
         this->destroy();   
@@ -34,9 +31,8 @@ Graph<Element>& Graph<Element> :: operator=(const Graph<Element>& graph){
         throw CopyError{}; 
 }//end of = overload
 
-//not that << is a non memeber overload
-template <class Element>                                                      
-std :: ostream& operator<<(ostream& stream, const Graph<Element>& graph)                  
+//not that << is a non memeber overload                                                  
+std :: ostream& operator<<(ostream& stream, const Graph& graph)                  
 {                                                                             
    /*
   int root = 0;  
@@ -47,33 +43,33 @@ std :: ostream& operator<<(ostream& stream, const Graph<Element>& graph)
 //================================================================
 //   Public Methods 
 //================================================================
-template<class Element>
-Element* Graph<Element> :: get(int vertexName){
+
+Vertex* Graph :: get(int vertexName){
     return vertiecesArray[vertexName];
 }//end of get  
 
-template<class Element>
-void Graph<Element> :: dfs(){
-    for( each v in V){
+
+void Graph :: dfs(){
+    /*for( each v in V){
         v.dist = inf;
         v.pred;
-    }
+    }*/
 
 }//end of dfs
 
-template<class Element>
-bool Graph<Element> :: cycle(){
+
+bool Graph :: cycle(){
 
 }//end of cycle
 
 
-template<class Element>
-void Graph<Element> :: copy(const Graph<Element>& graph){
+
+void Graph :: copy(const Graph& graph){
 }//end of copy
 
 
-template<class Element>
-void Graph<Element> :: print(int root){
+
+void Graph :: print(int root){
 }//end of print
 
 
@@ -83,31 +79,60 @@ void Graph<Element> :: print(int root){
 //                                                                
 //================================================================
 
-template<class Element>
-void Graph<Element> :: readFile(string filename){
 
-string line;
-
-
+void Graph::readFile(string filename){
 //read in files
-ifstream file("linuxDict.txt");
-    if (file.tellg() == 1)
-    {
-        throw "ERROR: file is empty";
-    }
-    if (file.is_open())
-    {
-        //the first line of the file will always have the number of vertices
-        getline(file, line)
-        //Graph<Element> *Alist = new List<Element>[int(line)] //fix python
-    }
+ifstream file(filename);
+    string line; //line from file 
+    string stringEdgeWeight; //intermediate value so we can use string to int 
 
+    int numOfvertices;
+    int edgeWeight; 
+                                            
+    if (file.tellg() == 1)                                                      
+    {                                                                           
+        throw "ERROR: file is empty";                                           
+    }                                                                           
+    if (file.is_open())                                                         
+    {                                                                           
+        //the first line of the file will always have the number of vertices    
+        getline(file, line); 
+        numOfvertices = stoi(line);
+        size = numOfvertices;
+        
+        vertiecesArray = new Vertex*[numOfvertices];
+        for (int i = 0; i < numOfvertices; i++)
+        {
+           vertiecesArray[i] = new Vertex();
+        }
+        
+        //this secion gets the rest of the file
+        for (int yAxis = 0 ; yAxis < numOfvertices ; yAxis++){
+            getline(file, line);
+            cout<<line<<endl;
+            int j;
+            int xAxis;
+            int nodeCount = 0;
+            for ( j = 0, xAxis = 0  ; j < numOfvertices*2 ; j+=2, xAxis++){ //will the *2 always work?
+                stringEdgeWeight = line[j];
+                edgeWeight = stoi(stringEdgeWeight);
+                
+                if(edgeWeight != 0){
+                    cout<<yAxis<<"->"<<xAxis<<": "<<edgeWeight<<endl;
+                }
+                vertiecesArray[yAxis]->value = yAxis; //this adds values to vertex nodes, not sure if proper values at this point in time
+                
+            }// end of go through line
+            cout<<endl;
+        }//end of of interating through vertically
 
+        //Graph *Alist = new List[int(line)] //fix python     
+    }                                                                           
 
 }//end of readFile
 
-template<class Element>
-void Graph<Element> :: destroy(){
+
+void Graph :: destroy(){
 }//end of destroy 
 
 

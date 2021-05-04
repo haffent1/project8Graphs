@@ -1,31 +1,25 @@
+#include <iostream>
+#include "graph.h"
 
-
-//making this early so that MITCH dose not do his "write everything in main" format
-//ily
+using namespace std;
 
 
 void testGraphConstructor();
 void testGraphCopy();
 
-int main(){
+int main(  void  )
+{
     
-
-
+  testGraphConstructor();
+  return 0;
 
 }
 
 
-void testGraphConstructor(){
-
-    try {
-      // Block of code to try
-      throw exception; // Throw an exception when a problem arise
-    }
-    catch () {
-      // Block of code to handle errors
-    } 
-
-
+void testGraphConstructor()
+{
+    Graph g1("exampleGraph.txt");
+    
 }
 
 
