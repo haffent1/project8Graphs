@@ -16,6 +16,16 @@ int main(){
 
 
 void testGraphConstructor(){
+
+    try {
+      // Block of code to try
+      throw exception; // Throw an exception when a problem arise
+    }
+    catch () {
+      // Block of code to handle errors
+    } 
+
+
 }
 
 

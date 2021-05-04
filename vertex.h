@@ -10,23 +10,24 @@ using namespace std;
 //I don't think that we need to have this as a typeclass
 class Vertex{
     public:
-        Vertex();
-        Vertex(const Vertex& vertex);
-        Vertex& operator = (const Vertex& vertex);
+        Vertex(int value); 
+        Vertex(const Vertex& vertex); //copy constructor
+        Vertex& operator = (const Vertex& vertex); 
 
-        ~Vertex();
+        string toString() const;
+
+        ~Vertex(); //destructor
 
 
 
 
     pivate:
-        int value // i think vertex need values
-
+        int value // this also acts like a name to my understaning
         void copy(const Vertex& vertex);
         void Destroy();
 
-
-}
+        friend ostream& operator<<(std::ostream& stream, const Vertex& vertex);
+};//end of vertex class
 
 class KeyError{};
 class SizeError{};
