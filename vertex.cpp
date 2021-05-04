@@ -1,12 +1,24 @@
 //vertex.cpp
-
-
-
 #include <sstream>
+
+Vertex :: Vertex(){
+    value = NULL;
+    distFromRoot = NULL;
+    predecessor = NULL;
+    key = NULL;    
+    color = NULL;    
+    discovery = NULL;
+    finish = NULL;
+}//end of default constructor
 
 Vertex :: Vertex(int value){
     value = value;
-    
+    distFromRoot = NUll;
+    predecessor = NULL;
+    key = NUll;    
+    color = NULL;    
+    discovery = NULL;
+    finish = NULL;
 }//end of default constructor
 
 Vertex :: Vertex(const Vertex& vertex){
@@ -40,10 +52,23 @@ Vertex :: ~Vertex(){
 
 Vertex :: void copy(const Vertex& vertex){
     value = vertex.length;
+    distFromRoot = vertex.distFromRoot;
+    predecessor = vertex.predecessor;
+    key = vertex.key;
+    color = vertex.color;    
+    discovery = vertex.discovery;
+    finish = vertex.finish;
+
 }// end of copy
 
 Vertex :: void Destroy(){
     value = NULL;
+    distFromRoot = NUll;
+    predecessor = NULL;
+    key = NULL;    
+    color = NULL;    
+    discovery = NULL:
+    finish = NULL:
 } //end of Destroy 
 
 
