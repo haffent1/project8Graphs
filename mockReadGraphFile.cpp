@@ -14,7 +14,10 @@ int main(){
 
 void readFile(string fileName){
     string line; //line from file 
+    string tempNumber;
     string stringEdgeWeight; //intermediate value so we can use string to int 
+    
+    int child;
 
     int numOfvertices;
     int edgeWeight; 
@@ -31,21 +34,21 @@ void readFile(string fileName){
             numOfvertices = stoi(line);
 
             //this secion gets the rest of the file
-            for (int yAxis = 0 ; yAxis < numOfvertices ; yAxis++){
+            for (int parent = 0 ; parent < numOfvertices ; parent++){
                 getline(file, line);
                 cout<<line<<endl;
-                int j;
-                int xAxis;
-                for ( j = 0, xAxis = 0  ; j < numOfvertices*2 ; j+=2, xAxis++){ //will the *2 always work?
-                    stringEdgeWeight = line[j];
+                istringstream ssLine(line); 
+                child = 0; //reset the X
+                while(ssLine){
+                    ssLine >> stringEdgeWeight;
                     edgeWeight = stoi(stringEdgeWeight);
-                    
                     if(edgeWeight != 0){
-                        cout<<yAxis<<"->"<<xAxis<<": "<<edgeWeight<<endl;
+                        cout <<parent<<"->"<<child<<":"<< stringEdgeWeight << endl;
                     }
-                }// end of go through line
-                cout<<endl;
-            }//end of of interating through vertically
+                    child++;
+                } 
+            }
+
 
             //Graph<Element> *Alist = new List<Element>[int(line)] //fix python     
         }                                                                           

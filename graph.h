@@ -34,8 +34,9 @@ class Graph{
         //we might need a get weight method
 
         void dfs(); //depth first search print vertices in order
+        void dfsVisit(int i, int *timep) // recursive call of dfs
         bool cycle(); //indicates whether or not the graph contains a cycle
-        void print(int root); 
+        void print(); 
         void Prim(int root); //us Prims algorithm to construct a minimum
         // spanning tree of an undrected weighted grpah, starting from the vertex 
         // root. the method should simply print the edges in the MST.
