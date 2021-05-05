@@ -110,7 +110,7 @@ void Graph :: print(){
 }//end of print
 
 void Graph :: Prim(int root){
-    //make a min priority queue                                                 
+    /*//make a min priority queue                                                 
     //check syntax                                                              
     MinPriorityQueue<int> primQueue = new MinPriorityQueue<int>(size); //size is an atrib of graph
     Vertex* U = new Vertex;                                                     
@@ -136,7 +136,7 @@ void Graph :: Prim(int root){
                 vertiecesArray[child].predecessor = U;                          
             }// end of if weight is less than key                               
         } // end of for loop for adjacency list of U                            
-    }// end of while loop for primQueue not empty                               
+    }// end of while loop for primQueue not empty             */                  
 }//end of print
 
 //================================================================
@@ -174,6 +174,10 @@ ifstream file(filename);
            vertiecesArray[i] = new Vertex();
         }
         
+        GraphWeights = new Dict<weightedTuple>(numOfvertices);
+        
+        //Alist = new List<Vertex>(numOfvertices);
+        
         for (int parent = 0 ; parent < numOfvertices ; parent++){           
             getline(file, line);                                            
             cout<<line<<endl;                                               
@@ -181,13 +185,28 @@ ifstream file(filename);
             child = 0; //reset the X                                        
             while(ssLine){                                                  
                ssLine >> stringEdgeWeight;                                 
-               edgeWeight = stoi(stringEdgeWeight);                        
-               if(edgeWeight != 0){                                        
-               cout <<parent<<"->"<<child<<":"<< stringEdgeWeight << endl;
-                }                                                           
+               edgeWeight = stoi(stringEdgeWeight);    
+                                   
+               if(edgeWeight != 0)
+               {                                        
+                   cout <<parent<<"->"<<child<<":"<< stringEdgeWeight << endl;
+                   
+                   //Fills the verticecesArray list with new vertexes
+                   Vertex *v = new Vertex;
+                   v->value = parent;
+                   vertiecesArray[parent] = v;
+                   
+                   //Fills the GraphWeights hash with new vertexes
+                   weightedTuple *w = new weightedTuple;
+                   w->head = parent;
+                   w->tail = child;
+                   w->weight = stringEdgeWeight;
+                   GraphWeights->insert(w);
+               }                                                           
             child++;                                                    
             }//end of line while loop 
-        }//end of y axis traveral                                                                   
+        }//end of y axis traveral                 
+        cout << *GraphWeights << endl;                                           
     }
 
 }//end of readFile

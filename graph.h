@@ -6,6 +6,7 @@
 #include "./supportFiles/List.h"
 #include "./supportFiles/dict.h"
 #include "vertex.h"
+#include "weightedTuple.h"
 
 using namespace std;
 
@@ -34,7 +35,7 @@ class Graph{
         //we might need a get weight method
 
         void dfs(); //depth first search print vertices in order
-        void dfsVisit(int i, int *timep) // recursive call of dfs
+        void dfsVisit(int i, int *timep); // recursive call of dfs
         bool cycle(); //indicates whether or not the graph contains a cycle
         void print(); 
         void Prim(int root); //us Prims algorithm to construct a minimum
@@ -51,7 +52,7 @@ class Graph{
         int size;
         Vertex **vertiecesArray; //an array of pointers to each vertex
         List<Vertex> *Alist; //adjacency list of the value nodes and their neighbors using a Linked list
-        Dict<Vertex> *GraphWeights; //a dict that holds pointers to a class that holds the 
+        Dict<weightedTuple> *GraphWeights; //a dict that holds pointers to a class that holds the 
         //friend ostream& operator<<(std::ostream& stream, const Graph<Vertex>& graph);
 
 };//end of Graph class
