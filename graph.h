@@ -36,13 +36,13 @@ class Graph //: public List<Vertex>
         Graph& operator = (const Graph& graph); //overload the = operator
         
         //Public Functions
-        Vertex* get(int vetexName);//should return a weight
+        int getWeight(int head, int tail);//should return a weight
 
         //Iterative Functions
         void dfs(); //depth first search print vertices in order
         void dfsVisit(int i, int *timep); // recursive call of dfs
         bool cycle(); //indicates whether or not the graph contains a cycle
-        void print(); 
+        //void print(); 
         void Prim(int root); //us Prims algorithm to construct a minimum
         
         //Cout functions

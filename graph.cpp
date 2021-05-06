@@ -58,9 +58,12 @@ ostream& operator<<(ostream& stream, const Graph& g)
 
 
 
-Vertex* Graph :: get(int vertexName)
+int Graph::getWeight(int head, int tail)
 {
-    return vertiecesArray[vertexName];
+  weightedTuple* wt = new weightedTuple;
+  wt->head = head;
+  wt->tail = tail;
+  return GraphWeights->get(*wt)->weight;
 }//end of get  
 
 
@@ -88,7 +91,7 @@ void Graph :: dfs(){
 void Graph :: dfsVisit(int i, int *timep)
 {                                               
 
-    int child;                                                                  
+    /*int child;                                                                  
     Vertex *U = vertiecesArray[i];                                              
     Vertex *v;                                                                  
                                                                                 
@@ -106,7 +109,7 @@ void Graph :: dfsVisit(int i, int *timep)
     U->finish = *(timep);                                                       
     cout<<U<<endl;// print the verties in the order that they are visited       
     }// end of for loop covering all children of                                
-    
+*/
 }//end of dfsVisit                                                              
 
 
@@ -117,9 +120,9 @@ bool Graph :: cycle(){
 
 
 
-void Graph :: print(){
+/*void Graph :: print(){
     //there is no mention of a required print function in the project
-}//end of print
+}//end of print*/
 
 
 
@@ -232,7 +235,7 @@ ifstream file(filename);
 
 }//end of readFile
 
-void Graph :: copy(const Graph& g)
+void Graph::copy(const Graph& g)
 {
     size = g.size;
     vertiecesArray = new Vertex*[size];
@@ -252,7 +255,7 @@ void Graph :: destroy()
 {
   delete [] this->Alist;
   delete [] this->vertiecesArray;
-  //GraphWeights.~Dict();
+  //GraphWeights.~HashTable();
 }//end of destroy 
 
 
