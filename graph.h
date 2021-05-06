@@ -15,7 +15,8 @@ class Graph;
                                                
 std::ostream& operator<<(std::ostream& stream, const Graph& g);
 
-class Graph{
+class Graph //: public List<Vertex>
+{
     public:
         //Constructors
         Graph(string fileName); //the constructor will take in a file
@@ -60,6 +61,7 @@ class Graph{
         Dict<weightedTuple> *GraphWeights; //a dict that holds pointers to a class that holds the 
         //friend ostream& operator<<(std::ostream& stream, const Graph<Vertex>& graph);
 
+    //using List<Vertex>::length;
 };//end of Graph class
 
 #include "graph.cpp"

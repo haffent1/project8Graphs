@@ -85,17 +85,18 @@ void Graph :: dfs(){
 
 
 
-void Graph :: dfsVisit(int i, int *timep){                                               
-/*
+void Graph :: dfsVisit(int i, int *timep)
+{                                               
+
     int child;                                                                  
-    vertex *U = vertiecesArray[i];                                              
-    vertex *v;                                                                  
+    Vertex *U = vertiecesArray[i];                                              
+    Vertex *v;                                                                  
                                                                                 
     U->color = 1; //1 == grey                                                   
     *(timep)++;                                                                 
     U->discovery = *(timep);                                                    
-    for(int j = 0 ; j < Alist[U->value].length ; j++){ //this is the most ugly syntex ive ever written, im sorry 
-        v = Alist[U->value].pop(); //get the numaric value of the child         
+    for(int j = 0 ; j < Alist[U->value]->length ; j++){ //this is the most ugly syntex ive ever written, im sorry 
+        v = Alist[U->value]->pop(); //get the numaric value of the child         
         if(v->color == 0){ //0 == white                                         
             v->predecessor = U; //the U and v might be swapped in this          
             dfsVisit(U->value,timep);                                           
@@ -105,7 +106,7 @@ void Graph :: dfsVisit(int i, int *timep){
     U->finish = *(timep);                                                       
     cout<<U<<endl;// print the verties in the order that they are visited       
     }// end of for loop covering all children of                                
-*/
+    
 }//end of dfsVisit                                                              
 
 
@@ -184,7 +185,7 @@ ifstream file(filename);
         size = numOfvertices;
         
         vertiecesArray = new Vertex*[numOfvertices];
-        for (int i = 0; i < numOfvertices + 1; i++)
+        for (int i = 0; i < numOfvertices; i++)
         {
            Vertex *v = new Vertex;
            v->value = i;
@@ -199,7 +200,7 @@ ifstream file(filename);
            Alist[i] = new List<Vertex>;
         }
         
-        for (int parent = 0 ; parent < numOfvertices ; parent++){           
+        for (int parent = 0; parent <= numOfvertices ; parent++){           
             getline(file, line);                                            
             //cout<<line<<endl;                                               
             istringstream ssLine(line);                                     
@@ -208,13 +209,12 @@ ifstream file(filename);
                ssLine >> stringEdgeWeight;                                 
                edgeWeight = stoi(stringEdgeWeight);    
                                    
-               if(edgeWeight != 0)
+               if(edgeWeight != 0 && child < numOfvertices)
                {                                        
                    //cout <<parent<<"->"<<child<<":"<< stringEdgeWeight << endl;
                    
-                   //Fills the Alist with the proper values
-                   //Alist[parent]->append(vertiecesArray[child]);
-                   //cout << *vertiecesArray[2] << endl;
+                   //Fills the Alist with the proper values by linking it to the vertexes in vertiecesArray
+                   Alist[parent]->append(vertiecesArray[child]);
                    
                    //Fills the GraphWeights hash with new vertexes
                    weightedTuple *w = new weightedTuple;
@@ -224,10 +224,10 @@ ifstream file(filename);
                    GraphWeights->insert(w);
                    
                    //Fills the Alist with values
-               }                                                           
-            child++;                                                    
+               }    
+               child++;                                                                                                      
             }//end of line while loop 
-        }//end of y axis traveral                                                    
+        }//end of y axis traverals                                                
     }
 
 }//end of readFile
@@ -252,7 +252,7 @@ void Graph :: destroy()
 {
   delete [] this->Alist;
   delete [] this->vertiecesArray;
-  //GraphWeights.~HashTable();
+  //GraphWeights.~Dict();
 }//end of destroy 
 
 

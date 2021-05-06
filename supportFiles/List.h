@@ -52,7 +52,7 @@ class List
     string toString() const;
     friend ostream& operator<< <Element>(ostream& stream, const List<Element>& l);
   
-  protected:
+  //protected:
     Node<Element> *head;
     int length;
     
