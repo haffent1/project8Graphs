@@ -43,7 +43,7 @@ class Vertex{
 
 };//end of vertex class
 
-class CopyError{};
+//class CopyError{};
 
 #include "vertex.cpp"
 #endif

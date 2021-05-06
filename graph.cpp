@@ -9,11 +9,18 @@ Graph :: Graph(string filename){
     readFile(filename); //I just wanted to make the constuctor pretty
 }// end of default constructor 
      
-Graph :: Graph(const Graph& graph){
+     
+     
+Graph :: Graph(const Graph& graph)
+{
     this->copy(graph);
 }//end of copy constructor
   
-Graph :: ~Graph(){
+  
+  
+Graph::~Graph()
+{
+
 }//destructor
 
 //================================================================
@@ -31,22 +38,31 @@ Graph& Graph :: operator=(const Graph& graph){
         throw CopyError{}; 
 }//end of = overload
 
-//not that << is a non memeber overload                                                  
-std :: ostream& operator<<(ostream& stream, const Graph& graph)                  
-{                                                                             
-   /*
-  int root = 0;  
-  stream << graph.print(int root);                                                     
-  return stream;                                                              
-  */
-}                                                                             
+
+
+string Graph::toString() const
+{
+  stringstream s;
+  s << *GraphWeights;
+  return s.str();
+}
+
+ostream& operator<<(ostream& stream, const Graph& g)
+{
+  stream << g.toString();
+  return stream;
+}                                                                       
 //================================================================
 //   Public Methods 
 //================================================================
 
-Vertex* Graph :: get(int vertexName){
+
+
+Vertex* Graph :: get(int vertexName)
+{
     return vertiecesArray[vertexName];
 }//end of get  
+
 
 
 void Graph :: dfs(){
@@ -66,6 +82,7 @@ void Graph :: dfs(){
     }                                         
 */
 }//end of dfs
+
 
 
 void Graph :: dfsVisit(int i, int *timep){                                               
@@ -93,21 +110,17 @@ void Graph :: dfsVisit(int i, int *timep){
 
 
 
-
 bool Graph :: cycle(){
 
 }//end of cycle
 
 
 
-void Graph :: copy(const Graph& graph){
-}//end of copy
-
-
-
 void Graph :: print(){
     //there is no mention of a required print function in the project
 }//end of print
+
+
 
 void Graph :: Prim(int root){
     /*//make a min priority queue                                                 
@@ -139,6 +152,8 @@ void Graph :: Prim(int root){
     }// end of while loop for primQueue not empty             */                  
 }//end of print
 
+
+
 //================================================================
 //                                                                
 //   Private Methods 
@@ -169,18 +184,24 @@ ifstream file(filename);
         size = numOfvertices;
         
         vertiecesArray = new Vertex*[numOfvertices];
-        for (int i = 0; i < numOfvertices; i++)
+        for (int i = 0; i < numOfvertices + 1; i++)
         {
-           vertiecesArray[i] = new Vertex();
+           Vertex *v = new Vertex;
+           v->value = i;
+           vertiecesArray[i] = v;
         }
         
         GraphWeights = new Dict<weightedTuple>(numOfvertices);
         
-        //Alist = new List<Vertex>(numOfvertices);
+        Alist = new List<Vertex>*[numOfvertices];
+        for (int i = 0; i < numOfvertices; i++)
+        {
+           Alist[i] = new List<Vertex>;
+        }
         
         for (int parent = 0 ; parent < numOfvertices ; parent++){           
             getline(file, line);                                            
-            cout<<line<<endl;                                               
+            //cout<<line<<endl;                                               
             istringstream ssLine(line);                                     
             child = 0; //reset the X                                        
             while(ssLine){                                                  
@@ -189,30 +210,49 @@ ifstream file(filename);
                                    
                if(edgeWeight != 0)
                {                                        
-                   cout <<parent<<"->"<<child<<":"<< stringEdgeWeight << endl;
+                   //cout <<parent<<"->"<<child<<":"<< stringEdgeWeight << endl;
                    
-                   //Fills the verticecesArray list with new vertexes
-                   Vertex *v = new Vertex;
-                   v->value = parent;
-                   vertiecesArray[parent] = v;
+                   //Fills the Alist with the proper values
+                   //Alist[parent]->append(vertiecesArray[child]);
+                   //cout << *vertiecesArray[2] << endl;
                    
                    //Fills the GraphWeights hash with new vertexes
                    weightedTuple *w = new weightedTuple;
                    w->head = parent;
                    w->tail = child;
-                   w->weight = stringEdgeWeight;
+                   w->weight = edgeWeight;
                    GraphWeights->insert(w);
+                   
+                   //Fills the Alist with values
                }                                                           
             child++;                                                    
             }//end of line while loop 
-        }//end of y axis traveral                 
-        cout << *GraphWeights << endl;                                           
+        }//end of y axis traveral                                                    
     }
 
 }//end of readFile
 
+void Graph :: copy(const Graph& g)
+{
+    size = g.size;
+    vertiecesArray = new Vertex*[size];
+    Alist = new List<Vertex>*[size];
+    
+    for (int i = 0; i < size; i++)
+    {
+      vertiecesArray[i] = g.vertiecesArray[i];
+      Alist[i] = g.Alist[i];
+    }
+    
+    //GraphWeights = new Dict<weightedTuple>(g.size);
+    GraphWeights = g.GraphWeights;  
+}//end of copy
 
-void Graph :: destroy(){
+void Graph :: destroy()
+{
+  delete [] this->Alist;
+  delete [] this->vertiecesArray;
+  //GraphWeights.~HashTable();
 }//end of destroy 
 
 

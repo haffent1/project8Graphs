@@ -19,6 +19,15 @@ int main(  void  )
 void testGraphConstructor()
 {
     Graph g1("exampleGraph.txt");
+    Graph g2(g1);
+    
+    g2 = g1;
+    
+    cout << g1 << endl;
+    
+    cout << g2 << endl;
+    
+    g1.~Graph();
     
 }
 

@@ -39,7 +39,7 @@ weightedTuple::weightedTuple()
 
 int weightedTuple::hash(int slots)
 {
-  int x = head + tail;
+  int x = head + tail * 3.14;
 
   float A = .618;
   int B = (A * x);
