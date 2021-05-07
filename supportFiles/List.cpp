@@ -70,7 +70,7 @@ template <class Element>
 int List<Element>::index(const Element& item) const
 {
   if (head == NULL && length == 0)
-    throw SizeError{};
+    throw SizeError();
   Node<Element> *ptr = head;
   int i = 0;
   while (ptr != NULL)
@@ -90,7 +90,7 @@ template <class Element>
 void List<Element>::insert(int index, Element *item)
 {
   if (index > length)
-    throw SizeError{};
+    throw SizeError();
   else if (index == length)
     append(item);
   else if (index == 0)
@@ -119,7 +119,7 @@ template <class Element>
 Element* List<Element>::pop(int index)
 {
   if (length == 0 || index > length)
-    throw SizeError{};
+    throw SizeError();
   Node<Element> *ptr = head;
   Element* x;
   if (index == 0 && length == 1)
@@ -161,7 +161,7 @@ template <class Element>
 Element* List<Element>::get(const Element *item)
 {
   if (length == 0)
-    throw SizeError{};
+    throw SizeError();
   Node<Element> *ptr = head;
   while ((ptr != nullptr) && (*ptr->value != *item))
     ptr = ptr->next;
@@ -171,7 +171,7 @@ Element* List<Element>::get(const Element *item)
     return x; 
   }
   else
-    throw KeyError{};
+    throw KeyError();
 }
 
 //
@@ -181,7 +181,7 @@ template <class Element>
 void List<Element>::remove(const Element& item)
 {
   if (length == 0)
-    throw SizeError{};
+    throw SizeError();
   Node<Element> *ptr = head;
   if (item == *ptr->value)
   {
@@ -206,7 +206,7 @@ void List<Element>::remove(const Element& item)
       length--;
     }
     else
-      throw KeyError{};
+      throw KeyError();
   }
 }
 
@@ -264,7 +264,26 @@ List<Element>& List<Element>::operator=(const List<Element>& l)
     return *this;
   }
   else
-    throw CopyError{};
+    throw CopyError();
+}
+
+//
+//[] operator
+//
+template <class Element>
+Element* List<Element>::operator[](int index) const
+{
+  if ((index < 0) || index >= length)
+    throw KeyError();
+  
+  Node<Element> *ptr = head;
+  int count = 0;
+  while (ptr != NULL && count < index){
+    ptr = ptr->next;
+    count++;
+  }
+  return(ptr->value);
+  
 }
 
 //

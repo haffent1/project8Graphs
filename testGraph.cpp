@@ -1,5 +1,6 @@
 #include <iostream>
 #include "graph.h"
+#include "./supportFiles/List.h"
 
 using namespace std;
 
@@ -9,19 +10,49 @@ void testGet();
 void testDFS();
 void testCycle();
 void testPrim();
+void testList();
 
 int main(  void  )
 {
-    
+  //testList();
   testGraphConstructors();
-  testGet();
-  testDFS();
-  testCycle();
-  testPrim();
+  //testGet();
+  //testDFS();
+  //testCycle();
+  //testPrim();
   return 0;
 
 }
 
+void testList()
+{
+  List<int> l1;
+  
+  cout << "================================================="<< endl << "Default and Append test:" << endl;
+  
+  cout << "l1 empty: " << l1.empty() << endl;
+  int test1= 10;
+  int *value1= &test1;
+  l1.append(value1);
+  
+  int test2 = 5;
+  value1 = &test2;
+  l1.append(value1);
+
+  int test3 = 20;
+  value1 = &test3;
+  l1.append(value1);
+  
+  cout << l1 << endl;
+  
+  cout << "l1 empty: " << l1.empty() << endl;
+  cout << "l1 size: " << l1.size() << endl;
+  
+  cout << "l1 [0]: " << *l1[0] << endl;
+  cout << "l1 [1]: " << *l1[1] << endl;
+  cout << "l1 [2]: " << *l1[2] << endl;
+  cout << "=================================================" << endl << "Copy and Deconstructor test: " << endl;
+}
 
 void testGraphConstructors()
 {

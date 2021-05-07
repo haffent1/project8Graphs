@@ -47,7 +47,8 @@ class List
     bool empty() const;
     int size() const;
 
-	List<Element>& operator=(const List<Element>& l);         
+	  List<Element>& operator=(const List<Element>& l);
+    Element* operator[](int index) const;         
     
     string toString() const;
     friend ostream& operator<< <Element>(ostream& stream, const List<Element>& l);

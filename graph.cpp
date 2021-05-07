@@ -88,17 +88,23 @@ void Graph :: dfs(){
 
 
 
-void Graph :: dfsVisit(int i, int *timep)
-{                                               
-
-    /*int child;                                                                  
-    Vertex *U = vertiecesArray[i];                                              
-    Vertex *v;                                                                  
-                                                                                
-    U->color = 1; //1 == grey                                                   
-    *(timep)++;                                                                 
-    U->discovery = *(timep);                                                    
-    for(int j = 0 ; j < Alist[U->value]->length ; j++){ //this is the most ugly syntex ive ever written, im sorry 
+void Graph::dfsVisit(Vertex u, int time)
+{     
+    u.color = 1;
+    time++;
+    u.discovery = time;
+    for (int i = 0; i < Alist[u.value]->size(); i++) {
+      cout << "hoi" << endl;
+      /*
+      List<Vertex> temp(*Alist[i]);
+          cout << *temp[1] << endl;
+          
+      
+      in order to get the [] operator working
+      
+      //if (Alist[u.value][i]->color == 0)
+        //Alist[u.value][i].predecessor = u;
+    }
         v = Alist[U->value]->pop(); //get the numaric value of the child         
         if(v->color == 0){ //0 == white                                         
             v->predecessor = U; //the U and v might be swapped in this          
@@ -230,7 +236,7 @@ ifstream file(filename);
                }    
                child++;                                                                                                      
             }//end of line while loop 
-        }//end of y axis traverals                                                
+        }//end of y axis traverals                                        
     }
 
 }//end of readFile
