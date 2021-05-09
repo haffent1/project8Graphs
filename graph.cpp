@@ -11,7 +11,7 @@ Graph :: Graph(string filename){
      
      
      
-Graph :: Graph(const Graph& graph)
+Graph::Graph(const Graph& graph)
 {
     this->copy(graph);
 }//end of copy constructor
@@ -70,7 +70,7 @@ int Graph::getWeight(int head, int tail)
 
 void Graph :: dfs(){
 //for colors 0==white, 1==grey, 2==black  
-/* 
+/*
     int time = 0;                             
     int *timep = &time;                       
                                              
@@ -90,20 +90,21 @@ void Graph :: dfs(){
 
 void Graph::dfsVisit(Vertex u, int time)
 {     
-    u.color = 1;
+    /*u.color = 1;
     time++;
     u.discovery = time;
     for (int i = 0; i < Alist[u.value]->size(); i++) {
-      cout << "hoi" << endl;
+      cout << "hoi" << endl;*/
       /*
       List<Vertex> temp(*Alist[i]);
           cout << *temp[1] << endl;
           
-      
-      in order to get the [] operator working
-      
-      //if (Alist[u.value][i]->color == 0)
-        //Alist[u.value][i].predecessor = u;
+      Use this to iterate through the Alist instead of using [] since that wasnt working when it as a pointer to a linked list
+      for (int i = 0; i < size; i++)
+        {
+          for (int z = 0; z < Alist[i]->size(); z++)
+            cout << *Alist[i]->find(z) << endl;
+        }    
     }
         v = Alist[U->value]->pop(); //get the numaric value of the child         
         if(v->color == 0){ //0 == white                                         
@@ -236,7 +237,7 @@ ifstream file(filename);
                }    
                child++;                                                                                                      
             }//end of line while loop 
-        }//end of y axis traverals                                        
+        }//end of y axis traverals                                   
     }
 
 }//end of readFile

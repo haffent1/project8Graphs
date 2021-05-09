@@ -175,6 +175,21 @@ Element* List<Element>::get(const Element *item)
 }
 
 //
+//find
+//
+template <class Element>
+Element* List<Element>::find(int index)
+{
+  if ((index < 0) || index >= length)
+    throw KeyError();
+  
+  Node<Element> *ptr = head;
+  for (int i = 0; i < index; i++)
+    ptr = ptr->next;
+  return(ptr->value);
+}
+
+//
 //remove
 //
 template <class Element>

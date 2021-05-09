@@ -41,6 +41,7 @@ class List
     void insert(int index, Element *item);
     Element* pop(int index);
     Element* get(const Element *item);
+    Element* find(int index);
     void remove(const Element& item);
     
     bool contains(const Element& item) const;
