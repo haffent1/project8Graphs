@@ -16,7 +16,7 @@ class weightedTuple
 
       weightedTuple();
       
-      int hash(int slots);
+      int hash(int slots) const;
 
       /*bool operator<(const weightedTuple& w) const;
       bool operator>(const weightedTuple& w) const;
@@ -37,7 +37,7 @@ weightedTuple::weightedTuple()
   weight = 0;
 }
 
-int weightedTuple::hash(int slots)
+int weightedTuple::hash(int slots) const
 {
   int x = head + tail * 3.14;
 

@@ -6,6 +6,7 @@
 #include "./supportFiles/List.h"
 #include "./supportFiles/dict.h"
 #include "./supportFiles/hash.h"
+#include "./supportFiles/pq.h"
 #include "vertex.h"
 #include "weightedTuple.h"
 

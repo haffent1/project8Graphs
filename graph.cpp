@@ -20,13 +20,12 @@ Graph::Graph(const Graph& graph)
   
 Graph::~Graph()
 {
-
+//we still need to write this
 }//destructor
 
 //================================================================
 //    Operators                                                   
 //================================================================
-
 Graph& Graph :: operator=(const Graph& graph){
     if (this != &graph)      
     {                    
@@ -64,6 +63,7 @@ int Graph::getWeight(int head, int tail)
   wt->head = head;
   wt->tail = tail;
   return GraphWeights->get(*wt)->weight;
+  
 }//end of get  
 
 
@@ -72,7 +72,7 @@ void Graph :: dfs(){
 //for colors 0==white, 1==grey, 2==black  
 /*
     int time = 0;                             
-    int *timep = &time;                       
+    int *timep = &time;  //made time a pointer so that it can be passed in 
                                              
     for(int i = 0 ; i < size ; i++){          
         vertiecesArray[i]->predecessor = NULL;
@@ -122,7 +122,7 @@ void Graph::dfsVisit(Vertex u, int time)
 
 
 bool Graph :: cycle(){
-
+    return NULL;
 }//end of cycle
 
 
@@ -134,23 +134,27 @@ bool Graph :: cycle(){
 
 
 void Graph :: Prim(int root){
-    /*//make a min priority queue                                                 
-    //check syntax                                                              
-    MinPriorityQueue<int> primQueue = new MinPriorityQueue<int>(size); //size is an atrib of graph
-    Vertex* U = new Vertex;                                                     
+    //make a min priority queue                                                 
+/*
+    MinPriorityQueue<int> primQueue; // note that this expects int pointers?
+    Vertex* U = new Vertex; //this will be used as primary vertex
+    Vertex* V = new Vertex; //this will be used as secondary vertex                                                    
     int child;                                                                  
                                                                                 
     for(int i = 0 ; i < size ; i++){ //size is the number of verties            
-        vertiecesArray[i]->predecessor = NULL;                                  
-        vertiecesArray[i]->key = 2147483647; // this is the largest value that an int in c++ can hold
-        primQueue.insert(vertiecesArray[i]);                                    
+        U = vertiecesArray[i];
+        U -> predecessor = NULL;                                  
+        U -> key = 2147483647; // this is the largest value that an int in c++ can hold
+        //primQueue->insert(vertiecesArray[i]);                                    
+        primQueue.insert(&U->value);                                    
     }//end of for loop                                                          
-    vertiecesArray[root]->key =  0;                                             
+    U = vertiecesArray[root];          
+    U->key = 0;
                                                                                 
     while(primQueue.empty() != true){                                           
-        U = vertiecesArray[primQueue.extractMin()]; // this syntex is kinda ugly
+        U = vertiecesArray[*(primQueue.extractMin())]; // this syntex is kinda ugly
         if (U->predecessor != NULL){ //this is the section that should handle the printing and just skip the first intera
-            cout << GraphWeights(U->value, U->parent->value)<<endl;             
+            cout << GraphWeights(U->value, U->predecessor->value) <<endl;             
         }                                                                       
                                                                                 
         for(int j = 0 ; j < Alist[U->value].length ; j++){ //this is assuming that the linked pointed to in Alist have a 
@@ -160,7 +164,8 @@ void Graph :: Prim(int root){
                 vertiecesArray[child].predecessor = U;                          
             }// end of if weight is less than key                               
         } // end of for loop for adjacency list of U                            
-    }// end of while loop for primQueue not empty             */                  
+    }// end of while loop for primQueue not empty                               
+    */
 }//end of print
 
 
