@@ -4,7 +4,6 @@
 
 using namespace std;
 
-
 void testGraphConstructors();
 void testGet();
 void testDFS();
@@ -19,55 +18,32 @@ int main(  void  )
   //testGet();
   //testDFS();
   //testCycle();
-  //testPrim();
+  testPrim();
   return 0;
 
 }
 
-void testList()
-{
-  List<int> l1;
-  
-  cout << "================================================="<< endl << "Default and Append test:" << endl;
-  
-  cout << "l1 empty: " << l1.empty() << endl;
-  int test1= 10;
-  int *value1= &test1;
-  l1.append(value1);
-  
-  int test2 = 5;
-  value1 = &test2;
-  l1.append(value1);
-
-  int test3 = 20;
-  value1 = &test3;
-  l1.append(value1);
-  
-  cout << l1 << endl;
-  
-  cout << "l1 empty: " << l1.empty() << endl;
-  cout << "l1 size: " << l1.size() << endl;
-  
-  cout << "l1 [0]: " << *l1[0] << endl;
-  cout << "l1 [1]: " << *l1[1] << endl;
-  cout << "l1 [2]: " << *l1[2] << endl;
-  cout << "=================================================" << endl << "Copy and Deconstructor test: " << endl;
-}
-
 void testGraphConstructors()
 {
+
+    //also test reading in a wrong file name
+    //also test reading in a larger graph
+    //also test reading in a graph with double digit weights
+
+    cout<<"test base constructor"<<endl;
     //Correct constructor test
     Graph g1("exampleGraph.txt");
-    
-    Graph g2(g1);
-    
-    Graph g3 = g1;
-    
     cout << "graph g1: " << g1 << endl;
     
+    
+    cout<<"test copy constructor"<<endl;
+    Graph g2(g1);
     cout << "graph g2: " << g2 << endl;
     
+    cout<<"test = overload constructor"<<endl;
+    Graph g3 = g1;
     cout << "graph g3: " << g3 << endl;
+    cout<<endl;
     
     //g1.~Graph();
 }
@@ -75,12 +51,16 @@ void testGraphConstructors()
 
 void testGet()
 {
+    //test getting weights that dont exist 
+    cout<<"test = overload constructor"<<endl;
     Graph g4("exampleGraph.txt");
     cout << "graph g4: " << g4 << endl;
     cout << "getWeight g4 (4,2) : " << g4.getWeight(4, 2) << endl;
     cout << "getWeight g4 (0,2) : " << g4.getWeight(0, 2) << endl;
     cout << "getWeight g4 (4,3) : " << g4.getWeight(4, 3) << endl;
     //cout << "getWeight g3 (0,0) : " << g3.getWeight(0, 0) << endl;
+    cout<<endl;
+    
 }
 
 void testDFS()
@@ -95,5 +75,20 @@ void testCycle()
 
 void testPrim()
 {
+    cout<<"test Prim"<<endl;
+    Graph testPrimGraph("exampleGraph.txt");
+    testPrimGraph.Prim(0);
+    cout<<endl;
+    
 
-}
+}//end of test prim
+
+
+
+
+
+
+
+
+
+

@@ -19,7 +19,13 @@ class Vertex{
         ~Vertex();                                                //Deconstructor
 
         Vertex& operator=(const Vertex& v);                       //assignment operator
-        
+        bool operator<(const Vertex& w) const;  
+        bool operator>(const Vertex& w) const;    
+        bool operator<=(const Vertex& w) const;   
+        bool operator>=(const Vertex& w) const;
+        bool operator==(const Vertex& w) const;
+        bool operator!=(const Vertex& w) const;   
+ 
         
         //Vertex Node Values
         int value;               // this also acts like a name to my understaning

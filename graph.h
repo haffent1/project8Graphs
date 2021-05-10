@@ -5,8 +5,8 @@
 #include <iostream>
 #include "./supportFiles/List.h"
 #include "./supportFiles/dict.h"
-#include "./supportFiles/hash.h"
 #include "./supportFiles/pq.h"
+#include "./supportFiles/hash.h"
 #include "vertex.h"
 #include "weightedTuple.h"
 
@@ -41,7 +41,7 @@ class Graph //: public List<Vertex>
 
         //Iterative Functions
         void dfs(); //depth first search print vertices in order
-        void dfsVisit(Vertex u, int time); // recursive call of dfs
+        void dfsVisit(Vertex u, int& time); // recursive call of dfs
         bool cycle(); //indicates whether or not the graph contains a cycle
         //void print(); 
         void Prim(int root); //us Prims algorithm to construct a minimum

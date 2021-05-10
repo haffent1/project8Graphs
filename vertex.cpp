@@ -65,6 +65,48 @@ Vertex& Vertex::operator=(const Vertex& v)
         throw CopyError{};
 
 }
+/*
+bool Vertex :: operator<(const Vertex& w) const{
+  if(key <  w.key){
+    return true;                           
+  }
+  return false;                            
+}
+bool Vertex :: operator>(const Vertex& w) const{
+  if(key > w.key){
+    return true;                           
+  }
+  return false;                            
+}
+bool Vertex :: operator<=(const Vertex& w) const{
+  if(key <= w.key){
+    return true;                           
+  }
+  return false;                            
+}
+bool Vertex :: operator>=(const Vertex& w) const{
+  if(key >=  w.key){
+    return true;                           
+  }
+  return false;                            
+}
+bool Vertex :: operator==(const Vertex& w) const{
+  if(key == w.key){
+    return true;                           
+  }
+  return false;                            
+}
+
+bool Vertex :: operator!=(const Vertex& w) const{
+  if(key != w.key){
+    return true;                           
+  }
+  return false;                            
+}
+
+*/
+
+
 
 //===================
 //
