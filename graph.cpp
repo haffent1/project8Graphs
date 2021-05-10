@@ -78,54 +78,85 @@ void Graph :: dfs(){
         vertiecesArray[i]->predecessor = NULL;
         vertiecesArray[i]->color = 0;         
     }//end of                                 
-    for(int i = 0 ; i < size ; i++){          
-        if(vertiecesArray[i]->color == 0){    
-            dfsVisit(i,time);                      
-        }                                     
+    for(int i = 0 ; i < size ; i++){    
+        if(vertiecesArray[i]->color == 0){
+            cout << "{";      
+            dfsVisit(vertiecesArray[i],time); 
+            cout << "\b";
+            cout << "\b";
+            cout << "}" << endl;                   
+        }                                
     }                                         
 }//end of dfs
 
 
 
-void Graph::dfsVisit(Vertex U, int& time)
+void Graph::dfsVisit(Vertex* U, int& time)
 {    
-    /* 
-    Vertex* V; //this will be used as secondary vertex                                                    
-    U.color = 1;
-    time++;
-    U.discovery = time;
-    for (int i = 0; i < Alist[U.value]->size(); i++) {
-      cout << "hoi" << endl;
-      
-      List<Vertex> temp(*Alist[i]);
-          cout << *temp[1] << endl;
-          
-      //Use this to iterate through the Alist instead of using [] since that wasnt working when it as a pointer to a linked list
-      for (int i = 0; i < size; i++)
-        {
-          for (int z = 0; z < Alist[i]->size(); z++)
-            cout << *Alist[i]->find(z) << endl;
-        }    
+    U->color = 1;
+    time = time + 1;
+    U->discovery = time;
+    //Use this to iterate through the Alist instead of using [] since that wasnt working when it as a pointer to a linked list
+    for (int z = 0; z < Alist[U->value]->size(); z++)
+    {
+      if(Alist[U->value]->find(z)->color == 0)
+      {
+        Vertex *v = Alist[U->value]->find(z);
+        v->predecessor = U;
+        dfsVisit(v, time);
+      }
     }
-        V = Alist[U->value]->pop(); //get the numaric value of the child         
-        if(V->color == 0){ //0 == white                                         
-            V->predecessor = U; //the U and v might be swapped in this          
-            dfsVisit(U->value,timep);                                           
-        }//end of if white                                                      
-    U->color = 2; //set color to black                                          
-    *(timep)++;                                                                 
-    U->finish = *(timep);                                                       
-    cout<<U<<endl;// print the verties in the order that they are visited       
-    }// end of for loop covering all children of                                
-    */
-
+    U->color = 2;
+    time++;
+    U->finish = time;
+    cout << *U << "<-";
 }//end of dfsVisit                                                              
 
 
 
 bool Graph :: cycle(){
-    return NULL;
+    int time = 0;                             
+    int *timep = &time;  //made time a pointer so that it can be passed in 
+    bool temp = false;
+                                             
+    for(int i = 0 ; i < size ; i++){          
+        vertiecesArray[i]->predecessor = NULL;
+        vertiecesArray[i]->color = 0;         
+    }                             
+    for(int i = 0 ; i < size ; i++){    
+        if(vertiecesArray[i]->color == 0){  
+            temp = cycleVisit(vertiecesArray[i],time);      
+            if (temp == true)
+              return temp;
+        }                                
+    }  
+    return temp; 
 }//end of cycle
+
+bool Graph::cycleVisit(Vertex* U, int& time)
+{
+    U->color = 1;
+    time = time + 1;
+    U->discovery = time;
+    //Use this to iterate through the Alist instead of using [] since that wasnt working when it as a pointer to a linked list
+    for (int z = 0; z < Alist[U->value]->size(); z++)
+    {
+      Vertex *v = Alist[U->value]->find(z);
+      if(v->color == 0)
+      {
+        v->predecessor = U;
+        cycleVisit(v, time);
+      }
+      else if (v->color == 2)
+      {
+        return true;
+      }
+    }
+    U->color = 2;
+    time++;
+    U->finish = time;
+    return false;
+}
 
 
 
