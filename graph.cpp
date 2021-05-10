@@ -68,31 +68,32 @@ int Graph::getWeight(int head, int tail)
 
 
 
-void Graph :: dfs(){
-//for colors 0==white, 1==grey, 2==black  
 
-    int time = 0;                             
-    int *timep = &time;  //made time a pointer so that it can be passed in 
-                                             
-    for(int i = 0 ; i < size ; i++){          
+void Graph :: dfs(){
+//for colors 0==white, 1==grey, 2==black
+
+    int time = 0;
+    int *timep = &time;  //made time a pointer so that it can be passed in
+
+    for(int i = 0 ; i < size ; i++){
         vertiecesArray[i]->predecessor = NULL;
-        vertiecesArray[i]->color = 0;         
-    }//end of                                 
-    for(int i = 0 ; i < size ; i++){    
+        vertiecesArray[i]->color = 0;
+    }//end of
+    for(int i = 0 ; i < size ; i++){
         if(vertiecesArray[i]->color == 0){
-            cout << "{";      
-            dfsVisit(vertiecesArray[i],time); 
+            cout << "{";
+            dfsVisit(vertiecesArray[i],time);
             cout << "\b";
             cout << "\b";
-            cout << "}" << endl;                   
-        }                                
-    }                                         
+            cout << "}" << endl;
+        }
+    }
 }//end of dfs
 
 
 
 void Graph::dfsVisit(Vertex* U, int& time)
-{    
+{
     U->color = 1;
     time = time + 1;
     U->discovery = time;
@@ -110,27 +111,27 @@ void Graph::dfsVisit(Vertex* U, int& time)
     time++;
     U->finish = time;
     cout << *U << "<-";
-}//end of dfsVisit                                                              
+}//end of dfsVisit
 
 
 
 bool Graph :: cycle(){
-    int time = 0;                             
-    int *timep = &time;  //made time a pointer so that it can be passed in 
+    int time = 0;
+    int *timep = &time;  //made time a pointer so that it can be passed in
     bool temp = false;
-                                             
-    for(int i = 0 ; i < size ; i++){          
+
+    for(int i = 0 ; i < size ; i++){
         vertiecesArray[i]->predecessor = NULL;
-        vertiecesArray[i]->color = 0;         
-    }                             
-    for(int i = 0 ; i < size ; i++){    
-        if(vertiecesArray[i]->color == 0){  
-            temp = cycleVisit(vertiecesArray[i],time);      
+        vertiecesArray[i]->color = 0;
+    }
+    for(int i = 0 ; i < size ; i++){
+        if(vertiecesArray[i]->color == 0){
+            temp = cycleVisit(vertiecesArray[i],time);
             if (temp == true)
               return temp;
-        }                                
-    }  
-    return temp; 
+        }
+    }
+    return temp;
 }//end of cycle
 
 bool Graph::cycleVisit(Vertex* U, int& time)
@@ -160,9 +161,6 @@ bool Graph::cycleVisit(Vertex* U, int& time)
 
 
 
-/*void Graph :: print(){
-    //there is no mention of a required print function in the project
-}//end of print*/
 
 
 
@@ -190,16 +188,16 @@ void Graph :: Prim(int root){
     while(primQueue.empty() != true ){                                           
         //cout<<"Prim que empty while loop"<<endl;                                                                            
         U = vertiecesArray[*(primQueue.extractMin())]; // this syntex is kinda ugly
-        cout<<"U: "<<U->value <<endl;
+        //cout<<"U: "<<U->value <<endl;
 
         if (U->predecessor != NULL){ //this is the section that should handle the printing and just skip the first intera
             //cout << getWeight(U->value, U->predecessor->value) <<endl;             
-            cout << U->predecessor->value <<endl;             
+            cout << U->predecessor->value<<"->"<<U->value <<endl;             
         }                                                                       
 
         for(int j = 0 ; j < Alist[U->value]->length ; j++){ //this is assuming that the linked pointed to in Alist have a 
             V = Alist[U->value]->find(j); //get the numaric value of the child 
-            cout<<"value of V: "<<V->value<<endl; //get the numaric value of the child 
+            //cout<<"value of V: "<<V->value<<endl; //get the numaric value of the child 
             if(getWeight(U->value, V->value) < V->key){ //I think that this is comparing pinters right now
                 vertiecesArray[V->value]->key = getWeight(U->value, V->value);      
                 vertiecesArray[V->value]->predecessor = U;                          
