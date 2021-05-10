@@ -159,6 +159,7 @@ Element* List<Element>::pop(int index)
 //
 template <class Element>
 Element* List<Element>::get(const Element *item)
+//Element* List<Element>::get(Element *item)
 {
   if (length == 0)
     throw SizeError();

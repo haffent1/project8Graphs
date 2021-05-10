@@ -41,6 +41,7 @@ class List
     void insert(int index, Element *item);
     Element* pop(int index);
     Element* get(const Element *item);
+    //Element* get( Element *item);
     Element* find(int index);
     void remove(const Element& item);
     
@@ -48,7 +49,7 @@ class List
     bool empty() const;
     int size() const;
 
-	  List<Element>& operator=(const List<Element>& l);
+	List<Element>& operator=(const List<Element>& l);
     Element* operator[](int index) const;         
     
     string toString() const;
@@ -60,7 +61,7 @@ class List
     
     void copy(const List<Element>& l); 
 		                                    
-		void destroy();
+	void destroy();
   
 };
 
