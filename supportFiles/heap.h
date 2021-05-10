@@ -1,4 +1,4 @@
-/ heap.h
+// heap.h
 // a binary min heap
 
 #ifndef HEAP_H

@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include "heap.h"
+#include "List.h" //this has to be included for the Error classes
 
 template <class KeyType>
 class MinPriorityQueue : public MinHeap<KeyType>
@@ -45,7 +46,9 @@ std::ostream& operator<<(std::ostream& stream, const MinPriorityQueue<KeyType>& 
 
 class FullError {};    // MinPriorityQueue full exception
 class EmptyError {};   // MinPriorityQueue empty exception
-class KeyError {};     // MinPriorityQueue key exception
+//class KeyError {};     // MinPriorityQueue key exception
+
+//we commented these out becuase they are a re-def after including the List.h
 
 #include "pq.cpp"
 
