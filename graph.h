@@ -63,6 +63,8 @@ class Graph //: public List<Vertex>
         Dict<weightedTuple> *GraphWeights; //a dict that holds pointers to a class that holds the 
         //friend ostream& operator<<(std::ostream& stream, const Graph<Vertex>& graph);
 
+    friend void testDFS();
+
     //using List<Vertex>::length;
 };//end of Graph class
 

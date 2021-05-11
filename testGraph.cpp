@@ -15,7 +15,7 @@ int main(void)
   testGraphConstructors();
   testGetWeight();
   testDFS();
-  //testCycle();
+  testCycle();
   //testPrim();
   return 0;
 
@@ -50,37 +50,57 @@ void testGraphConstructors()
 void testGetWeight()
 {
     //test getting weights that dont exist 
-    cout<<"test getWeight"<<endl;
+    cout<<"TEST: getWeight()"<<endl;
     Graph g4("exampleGraph.txt");
     //cout << "graph g4: " << g4 << endl;
 
-    cout << "getWeight g4 (4,2) : " << g4.getWeight(4, 2) << endl;
-    cout << "getWeight g4 (0,2) : " << g4.getWeight(0, 2) << endl;
-    cout << "getWeight g4 (4,3) : " << g4.getWeight(4, 3) << endl;
-    //cout << "getWeight g3 (0,0) : " << g3.getWeight(0, 0) << endl;
-    cout<<endl;
+    assert (g4.getWeight(4, 2) == 3);
+    assert (g4.getWeight(0, 2) == 2);
+    assert (g4.getWeight(4, 3) == 1);
+    try{
+      g4.getWeight(0, 0);
+    }
+    catch (class KeyError)
+    {
+      cout << "weight not present on edge (0,0)" << endl;
+    }
+    
+    cout << "GETWEIGHT TEST COMPELTE" << endl << endl << endl;
     
 }
 
 void testDFS()
 { 
-    cout<<"test dfs"<<endl;
+    cout<<"TEST: dfs()"<< endl;
     Graph testdfs("exampleGraph.txt");
     testdfs.dfs();
+    assert(testdfs.vertiecesArray[0]->discovery < testdfs.vertiecesArray[1]->discovery);
+    assert(testdfs.vertiecesArray[1]->discovery < testdfs.vertiecesArray[2]->discovery);
+    assert(testdfs.vertiecesArray[2]->discovery < testdfs.vertiecesArray[4]->discovery);
+    assert(testdfs.vertiecesArray[4]->discovery < testdfs.vertiecesArray[3]->discovery);
+    
+    
     Graph testDfsDisJointed("exampleGraphDisJointed.txt"); //test if the the print shows the disjointed
     testDfsDisJointed.dfs();
+    assert(testDfsDisJointed.vertiecesArray[0]->discovery < testDfsDisJointed.vertiecesArray[1]->discovery);
+    assert(testDfsDisJointed.vertiecesArray[1]->discovery < testDfsDisJointed.vertiecesArray[2]->discovery);
+    assert(testDfsDisJointed.vertiecesArray[2]->discovery < testDfsDisJointed.vertiecesArray[4]->discovery);
+    assert(testDfsDisJointed.vertiecesArray[4]->discovery < testDfsDisJointed.vertiecesArray[3]->discovery);
+    assert(testDfsDisJointed.vertiecesArray[3]->discovery < testDfsDisJointed.vertiecesArray[5]->discovery);
+    
+    cout << "DFS TEST COMPELTE" << endl << endl << endl;
 }
 
 void testCycle()
 {
-    cout<<"test Cycle"<<endl;
+    cout<<"TEST: cycle()"<< endl;
     Graph testCycleYes("exampleGraph.txt");
-    bool cycle = testCycleYes.cycle();
-    if(cycle == true){
-        cout<<"cycle found in graph with cycle"<<endl;
-    }
-
-
+    assert (testCycleYes.cycle() == true);
+    
+    Graph testCycleNo("exampleGraphNone.txt");
+    assert (testCycleNo.cycle() == false);
+    
+    cout << "CYCLE TEST COMPELTE" << endl << endl << endl;
 }
 
 void testPrim()

@@ -122,13 +122,7 @@ Element* List<Element>::pop(int index)
     throw SizeError();
   Node<Element> *ptr = head;
   Element* x;
-  if (index == 0 && length == 1)
-  {
-    x = ptr->value;
-    delete ptr;
-    head = NULL;
-  }
-  else if (index == 0 && length > 1)
+  if (index == 0)
   {
     x = ptr->value;
     head = head->next;
@@ -146,9 +140,9 @@ Element* List<Element>::pop(int index)
       qtr = qtr->next;
       count++;
     } 
-      x = ptr->value;
-      str->next = qtr;
-      delete ptr;  
+    x = ptr->value;
+    str->next = qtr;
+    delete ptr;  
   }
   length--;
   return(x);

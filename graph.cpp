@@ -305,7 +305,7 @@ void Graph :: destroy()
 {
   delete [] this->Alist;
   delete [] this->vertiecesArray;
-  //GraphWeights.~HashTable();
+  //delete GraphWeights;
 }//end of destroy 
 
 

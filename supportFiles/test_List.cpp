@@ -86,11 +86,11 @@ int main ()
   
   cout << "=================================================" << endl << "Pop test:" << endl;
   
-  cout << "Pop (3): " << *l2.find(3) << endl;
-  cout << "Pop (2): " << *l2.find(2) << endl;
-  cout << "Pop (1): " << *l2.find(1) << endl;
-  cout << "Pop (0): " << *l2.find(0) << endl;
-  
+  cout << "Pop (3): " << *l2.pop(3) << endl;
+  cout << "Pop (2): " << *l2.pop(2) << endl;
+  cout << "Pop (1): " << *l2.pop(1) << endl;
+  cout << "Pop (0): " << *l2.pop(0) << endl;
+
   cout << l2 << endl;
   
   cout << "=================================================" << endl << "Remove test:" << endl;
