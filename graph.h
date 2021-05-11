@@ -41,7 +41,7 @@ class Graph //: public List<Vertex>
 
         //Iterative Functions
         void dfs(); //depth first search print vertices in order
-        void dfsVisit(Vertex* u, int& time); // recursive call of dfs
+        void dfsVisit(Vertex* u, int& time, List<Vertex> *vertexList); // recursive call of dfs
         bool cycle(); //indicates whether or not the graph contains a cycle
         bool cycleVisit(Vertex* u, int& time);
         //void print(); 
@@ -52,7 +52,7 @@ class Graph //: public List<Vertex>
         friend ostream& operator<<(ostream& stream, const Graph& g);
 
 
-    public:
+    private:
         void readFile(string filename);//read a file representing a graph
         void copy(const Graph& g); // copy one graph to another 
         void destroy();

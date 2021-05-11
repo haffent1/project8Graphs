@@ -14,9 +14,9 @@ int main(void)
 {
   testGraphConstructors();
   testGetWeight();
-  //testDFS();
+  testDFS();
   //testCycle();
-  testPrim();
+  //testPrim();
   return 0;
 
 }
@@ -69,7 +69,6 @@ void testDFS()
     testdfs.dfs();
     Graph testDfsDisJointed("exampleGraphDisJointed.txt"); //test if the the print shows the disjointed
     testDfsDisJointed.dfs();
-    cout<<endl;
 }
 
 void testCycle()
