@@ -16,7 +16,7 @@ int main(void)
   testGetWeight();
   testDFS();
   testCycle();
-  //testPrim();
+  testPrim();
   return 0;
 
 }
@@ -105,12 +105,19 @@ void testCycle()
 
 void testPrim()
 {
-    cout<<"test Prim"<<endl;
+    //cout<<"test Prim"<<endl;
     Graph testPrimGraph("exampleGraph.txt");
-    cout<<"should be:"<<endl<<"0->1"<<endl<<"1->2"<<endl<<"1->3"<<endl<<"3->4"<<endl;
-    cout<<"real:"<<endl;
+    //cout<<"should be:"<<endl<<"0->1"<<endl<<"1->2"<<endl<<"1->3"<<endl<<"3->4"<<endl;
+    //cout<<"real:"<<endl;
     testPrimGraph.Prim(0);
-    cout<<endl;
+    //cout<<endl;
+    assert(testPrimGraph.vertiecesArray[4]->predecessor->value == 3);  
+    assert(testPrimGraph.vertiecesArray[3]->predecessor->value == 1);  
+    assert(testPrimGraph.vertiecesArray[2]->predecessor->value == 1);  
+    assert(testPrimGraph.vertiecesArray[1]->predecessor->value == 0);  
+    cout << "PRIM TEST COMPELTE" << endl << endl << endl;
+
+
     
 
 }//end of test prim
